@@ -1,0 +1,7 @@
+<% if (theme.meta.thumbnail.enable === true && (post.thumbnail || theme.meta.thumbnail.default)) { %>
+    <% if (theme.lazyload && theme.lazyload.enable === true) { %>
+        <a href="<%= url_for(post.link || post.path) %>"><div class="post-thumbnail lazy" href="<%= url_for(post.link || post.path) %>" data-bg="<%= (post.thumbnail || theme.meta.thumbnail.default) %>"></div></a>
+        <% } else { %>
+            <a href="<%= url_for(post.link || post.path) %>"><div class="post-thumbnail"  style="background-image: url('<%= post.thumbnail || theme.meta.thumbnail.default %>');"></div></a>
+        <% } %>
+<% } %>

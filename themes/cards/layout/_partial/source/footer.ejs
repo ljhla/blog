@@ -1,0 +1,25 @@
+<footer class="footer">
+    <%- partial('_plugins/back_to_top/main') %>
+    <%- partial('_plugins/statistics/index', {position: 'site'}) %> 
+    <% if (theme.footer.custom_text && theme.footer.custom_text.length) { %>
+        <% for(let i = 0; i < theme.footer.custom_text.length; ++i) { %>
+            <%- markdown(theme.footer.custom_text[i]) %>
+        <% } %>
+    <% } %>
+    <% if (theme.footer.copyright_since !== false) { %>
+        <%
+        let copyright_yr;
+        if (theme.footer.copyright_since !== null) {
+            copyright_yr = `${theme.footer.copyright_since}&nbsp;<a target="_blank" href="mailto:1798923421@qq.com"> 📧 </a>&nbsp;${date(Date.now(), 'YYYY')}`
+        } else {
+            copyright_yr = `${date(Date.now(), 'YYYY')}`
+        }
+        %>
+        <p class="footer-copyright">
+            <%- copyright_yr %>
+             <!-- <a href="<%= url_for('/') %>"><%= config.title %></a> -->
+        </p>
+    <% } %>
+    <p><a href="https://hexo.io" target="_blank">Hexo</a> | <a href="https://github.com/ChrAlpha/hexo-theme-cards" target="_blank">Cards</a></p>
+    <p><a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral" target="_blank" ><img src="https://image.wxydejoy.top/image/STM32&Cubeide/又拍云_logo5-2022-05-22.png" style="width:5rem"></a></p>
+</footer>

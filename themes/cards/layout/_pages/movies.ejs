@@ -1,0 +1,66 @@
+<main class="main movies">
+    <div class="movies-list">
+        <div class='movies-content'>
+            <% if (page.movies && !Array.isArray(page.movies)) { %>
+                <script>
+                    fetch('<%= url_for(page.movies) %>')
+                        .then(res => res.json())
+                        .then(movies => {
+                            movies.forEach(movie => {
+                                let i;
+                                (i = document.createElement('a')).style = `background:${movie.backgroundColor}; color:${movie.textColor}`,
+                                i.className = 'movies-card button',i.target = movie.target || '_blank',i.href = movie.url;
+                                let temp =  `<div class='movies-left'>`;
+                                if (movie.avatar) {
+                                    temp += `<img no-lazy class='avatar' src="${movie.avatar}" />`;
+                                }                                   
+                                temp += `</div><div class='movies-right'><p class="movies-name">${movie.name}</p><div class='movies-tags-wrapper'>`
+                                if (movie.desc) {
+                                    temp += `<p class="tags">${movie.desc}</p>`
+                                }
+                                if (movie.desca) {
+                                    temp += `<p class="tags">${movie.desca}<br>${movie.descb}</p>`
+                                }
+                                temp += '</div></div>';
+                                i.innerHTML = temp;
+                                document.querySelectorAll('.movies-content')[0].appendChild(i);
+                            });
+                        });
+                </script>
+            <% } else if (page.movies && Array.isArray(page.movies)) { %>
+                <% (page.movies || []).forEach((item) => { %>
+                    <a class='movies-card button' style='background:<%= item.backgroundColor %>; color:<%= item.textColor %>' target="<%= item.target || '_blank' %>" href='<%= url_for(item.url || '') %>'>
+                        <div class='movies-left'>
+                            <% if (item.avatar) { %>
+                                <img no-lazy class='avatar' src='<%= item.avatar %>'/>
+                            <% } %>
+                        </div>
+                        <div class='movies-right'>
+                            <p class="movies-name"><%= item.name %></p>
+                            <% if (item.tags) { %>
+                                <div class='movies-tags-wrapper'>
+                                    <%
+                                    var ts = [];
+                                    (item.tags || []).forEach((tag) => {
+                                        ts.push(tag);
+                                    })
+                                    %>
+                                    <p class="tags"><%= ts.join(' | ') %></p>
+                                </div>
+                            <% } %>
+                            <% if (item.desc) { %>
+                                <div class='movies-tags-wrapper'>
+                                    <p class="tags"><%= item.desc %></p>
+                                </div>
+                            <% } else if (item.desca) {%>
+                                <div class='movies-tags-wrapper'>
+                                <p class="tags"><%= item.desca %><br><%= item.descb %></p>
+                                </div>
+                            <% } %>
+                        </div>
+                    </a>
+                <% }); %>
+            <% } %>
+        </div>
+    </div>
+</main>
