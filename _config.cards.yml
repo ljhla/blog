@@ -551,8 +551,8 @@ vendors:
     js: https://ljhla.github.io/cdn/fancybox/jquery.fancybox.min.js
 
   # 自定义 script
-  custom_script: 
-    - "<script src='https://ljhla.github.io/cdn/lantern/lantern.js'></script>"
+  custom_script:  
+    # - "<script src='https://ljhla.github.io/cdn/lantern/lantern.js'></script>"
     # - "<script src='https://ljhla.github.io/cdn/pjax/pjax.min.js'></script>"
     # - "<script src='https://ljhla.github.io/cdn/fire/jquery-2.2.3.min.js'></script>"
     # - "<script>setTimeout(function() {$('.cover').fireworks();});</script>"
