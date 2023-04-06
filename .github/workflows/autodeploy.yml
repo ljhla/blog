@@ -46,10 +46,10 @@ jobs:
         hexo clean
         hexo generate
 
-    - name: copy_docs
-      run: |
-        cp  -r docs/ public/
-        cp  -r action/.github public/
+    # - name: copy_docs
+    #   run: |
+    #     cp  -r docs/ public/
+    #     cp  -r action/.github public/
         
 
     - name: 部署
